@@ -1,14 +1,5 @@
 class CatlaogModel {
-  static final items = [
-    Item(
-        id: 1,
-        name: "iPhone 12 Pro",
-        desc: "Apple iPhone 12th generation",
-        price: 999,
-        color: "#33505a",
-        image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRISJ6msIu4AU9_M9ZnJVQVFmfuhfyJjEtbUm3ZK11_8IV9TV25-1uM5wHjiFNwKy99w0mR5Hk&usqp=CAc")
-  ];
+  static List<Item>? items;
 }
 
 class Item {
@@ -20,4 +11,27 @@ class Item {
   final String? image;
 
   Item({this.id, this.name, this.desc, this.price, this.color, this.image});
+
+  // it gives
+  // Error=> All final variables must be initialized, but 'color', 'desc', and 4 others aren't.
+  //Try adding initializers for the fields
+  //therefore we add factory constructor
+  factory Item.fromMap(Map<dynamic, dynamic> map) {
+    return Item(
+        id: map["id"],
+        name: map["name"],
+        desc: map["desc"],
+        price: map["price"],
+        color: map["color"],
+        image: map["image"]);
+  }
+
+  toMap() => {
+        "id": id,
+        "name": name,
+        "desc": desc,
+        "price": price,
+        "color": color,
+        "image": image
+      };
 }
