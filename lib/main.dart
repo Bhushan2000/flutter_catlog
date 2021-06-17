@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/pages/home_page.dart';
 import 'package:flutter_catlog/pages/login_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors
             .deepPurple, // It adjust the all other widget colors according to deepPurple
-        // fontFamily: GoogleFonts.lato().fontFamily,
+        fontFamily: GoogleFonts.lato().fontFamily,
       ),
 
       initialRoute: "/Login", //by default it is "/" but you can
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // if both declare then it gives error
 
         "/": (context) => HomePage(), // by default
-       "/Login": (context) => LoginPage(),
+        "/Login": (context) => LoginPage(),
       },
     );
   }
