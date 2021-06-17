@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/pages/home_page.dart';
 import 'package:flutter_catlog/pages/login_page.dart';
+import 'package:flutter_catlog/utils/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -24,14 +25,14 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.lato().fontFamily,
       ),
 
-      initialRoute: "/Login", //by default it is "/" but you can
+      initialRoute: MyRoutes.loginRoute, //by default it is "/" but you can
       routes: {
         // by default route is => "/" but if you already declare "Page" in MaterialApp() widget and here also then it gives error
         // you can either give default route here or inside MaterialApp() widget
         // if both declare then it gives error
 
-        "/": (context) => HomePage(), // by default
-        "/Login": (context) => LoginPage(),
+        MyRoutes.homeRoute: (context) => HomePage(), // by default
+        MyRoutes.loginRoute: (context) => LoginPage(),
       },
     );
   }
