@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_catlog/pages/home_page.dart';
 import 'package:flutter_catlog/pages/login_page.dart';
 import 'package:flutter_catlog/utils/routes.dart';
+import 'package:flutter_catlog/widgets/themes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -16,14 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // home: HomePage(),
       themeMode: ThemeMode.light,
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      theme: ThemeData(
-        primarySwatch: Colors
-            .deepPurple, // It adjust the all other widget colors according to deepPurple
-        fontFamily: GoogleFonts.lato().fontFamily,
-      ),
+      darkTheme: MyTheme.darkTheme(context),
+      theme: MyTheme.lightTheme(context),
+
       debugShowCheckedModeBanner: false,
 
       initialRoute: MyRoutes.homeRoute, //by default it is "/" but you can
