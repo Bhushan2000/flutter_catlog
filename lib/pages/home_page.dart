@@ -58,6 +58,9 @@ class _HomePageState extends State<HomePage> {
                     clipBehavior: Clip.antiAlias,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
+
+                    // apply gridview in place of listview day16
+
                     child: GridTile(
                       header: Container(
                         padding: const EdgeInsets.all(12),
