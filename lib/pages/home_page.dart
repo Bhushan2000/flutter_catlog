@@ -1,7 +1,9 @@
 import 'dart:convert'; // it gives decoded json data
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_catlog/utils/routes.dart';
 import 'package:flutter_catlog/widgets/home_widgets/catalog_header.dart';
 import 'package:flutter_catlog/widgets/home_widgets/catalog_list.dart';
 
@@ -46,6 +48,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyTheme.creamColour,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.cartRoute);
+        },
+        child: Icon(CupertinoIcons.cart),
+        backgroundColor: MyTheme.darkBluishColour,
+      ),
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
@@ -54,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               CatalogHeader(),
               if (CatlaogModel.items != null && CatlaogModel.items!.isNotEmpty)
-                CatalogList().py16().expand() // wrap with expanded widget
+                CatalogList().py8().expand() // wrap with expanded widget
               else
                 CircularProgressIndicator().centered().expand(),
             ],

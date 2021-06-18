@@ -59,7 +59,7 @@ class CatalogItem extends StatelessWidget {
           children: [
             catalog!.name!.text.lg.color(MyTheme.darkBluishColour).bold.make(),
             catalog!.desc!.text.make(),
-            10.heightBox, // sizebox
+           // 10.heightBox, // sizebox
             ButtonBar(
               alignment: MainAxisAlignment.spaceBetween,
               buttonPadding: Vx.mH8,
@@ -74,13 +74,13 @@ class CatalogItem extends StatelessWidget {
                       StadiumBorder(),
                     ),
                   ),
-                  child: "Buy".text.make(),
+                  child: "Add To Cart".text.make(),
                 )
               ],
             ).pOnly(right: 8.0)
           ],
         ))
       ],
-    )).white.rounded.square(150).make().py(16);
+    )).white.rounded.square(160).make().py(16);
   }
 }
