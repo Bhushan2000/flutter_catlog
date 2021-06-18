@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/utils/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white, // it matches with the inserted image
+      color: context.canvasColor, // it matches with the inserted image
       child:
 
           //  Center(
@@ -107,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     Material(
-                      color: Colors.deepPurple,
+                      color: context.theme.buttonColor,
                       // shape:
                       //     changeButton ? BoxShape.circle : BoxShape.rectangle,
                       borderRadius:

@@ -17,13 +17,13 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       // home: HomePage(),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       darkTheme: MyTheme.darkTheme(context),
       theme: MyTheme.lightTheme(context),
 
       debugShowCheckedModeBanner: false,
 
-      initialRoute: MyRoutes.homeRoute, //by default it is "/" but you can
+      initialRoute: MyRoutes.loginRoute, //by default it is "/" but you can
       routes: {
         // by default route is => "/" but if you already declare "Page" in MaterialApp() widget and here also then it gives error
         // you can either give default route here or inside MaterialApp() widget
