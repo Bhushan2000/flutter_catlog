@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/models/catlog.dart';
+import 'package:flutter_catlog/widgets/home_widgets/add_to_cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeDetailsPage extends StatelessWidget {
-  final Item? catalog;
+  final Item catalog;
 
-  const HomeDetailsPage({Key? key, @required this.catalog})
+  const HomeDetailsPage({Key? key, required this.catalog})
       : assert(catalog != null),
         super(key: key);
 
@@ -21,18 +22,8 @@ class HomeDetailsPage extends StatelessWidget {
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: Vx.mH8,
           children: [
-            "\$${catalog!.price}".text.bold.xl4.red800.make(),
-            ElevatedButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(context.theme.buttonColor),
-                shape: MaterialStateProperty.all(
-                  StadiumBorder(),
-                ),
-              ),
-              child: "Add To Cart".text.make(),
-            ).wh(120, 50)
+            "\$${catalog.price}".text.bold.xl4.red800.make(),
+            AddToCart(catalog: catalog ).wh(120, 50)
           ],
         ).p32(),
       ),
@@ -41,9 +32,9 @@ class HomeDetailsPage extends StatelessWidget {
         child: Column(
           children: [
             Hero(
-              tag: Key(catalog!.id.toString()),
+              tag: Key(catalog.id.toString()),
               child: Image.network(
-                catalog!.image.toString(),
+                catalog.image.toString(),
               ),
             ).h32(context),
             Expanded(
@@ -56,11 +47,11 @@ class HomeDetailsPage extends StatelessWidget {
                   width: context.screenWidth,
                   child: Column(
                     children: [
-                      catalog!.name!.text.xl4
+                      catalog.name!.text.xl4
                           .color(context.accentColor)
                           .bold
                           .make(),
-                      catalog!.desc!.text.xl.make(),
+                      catalog.desc!.text.xl.make(),
                       10.heightBox, // sizebox
                       "Occaecat voluptate proident voluptate ut aute in proident."
                           .text
