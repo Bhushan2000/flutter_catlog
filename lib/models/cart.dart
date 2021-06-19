@@ -1,9 +1,9 @@
+import 'package:velocity_x/velocity_x.dart';
+
+import 'package:flutter_catlog/core/store.dart';
 import 'package:flutter_catlog/models/catlog.dart';
 
 class CartModel {
- 
-   
-
   CatlaogModel? _catlaog;
 
   //collection of ID's - store ID's of each item
@@ -13,7 +13,6 @@ class CartModel {
   CatlaogModel? get catalog => _catlaog;
 
   set catalog(CatlaogModel? newCatalog) {
-     
     _catlaog = newCatalog;
   }
 
@@ -24,13 +23,29 @@ class CartModel {
   num get totalPrice =>
       items.fold(0, (total, current) => total + current.price!.toInt());
 
-  // add item
-  void add(Item item) {
-    _itemId.add(item.id!.toInt());
-  }
+  
+}
 
-  // remmove itemm
-  void remove(Item item) {
-    _itemId.remove(item.id!.toInt());
+class AddMutation extends VxMutation<MyStore> {
+  final Item? item;
+  AddMutation(
+    this.item,
+  );
+
+  @override
+  perform() {
+    store!.cart!._itemId.add(item!.id!.toInt());
+  }
+}
+
+class ReomveMutation extends VxMutation<MyStore> {
+  final Item? item;
+  ReomveMutation(
+    this.item,
+  );
+
+  @override
+  perform() {
+    store!.cart!._itemId.remove(item!.id!.toInt());
   }
 }
