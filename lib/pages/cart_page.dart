@@ -69,7 +69,7 @@ class _CartList extends StatelessWidget {
 
     // VxState.listen(context, to: [ReomveMutation]);
 
-    // "VxState.listen" change to "VxState.watch"
+    /// "VxState.listen" change to "VxState.watch"
 
     VxState.watch(context, on: [ReomveMutation]);
 
