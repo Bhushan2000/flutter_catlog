@@ -1,15 +1,7 @@
 import 'dart:convert';
 
 class CatlaogModel {
-  ////////////////////// singleton class it produce only one object
-  static final catModel = CatlaogModel._internal();
-
-  // constructor
-  CatlaogModel._internal();
-
-  factory CatlaogModel() => catModel;
-
-  ////////////////// singleton class ///////////
+   
 
   static List<Item>? items;
 

@@ -1,17 +1,7 @@
 import 'package:flutter_catlog/models/catlog.dart';
 
 class CartModel {
-  ////////////////////// singleton class it produce only one object
-  static final cartModel = CartModel._internal();
-
-  // constructor
-  CartModel._internal();
-
-  factory CartModel() => cartModel;
-
-  ////////////////// singleton class /////////////////
-  ///
-   
+ 
    
 
   CatlaogModel? _catlaog;
