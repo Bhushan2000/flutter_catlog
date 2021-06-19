@@ -9,8 +9,7 @@ class CartModel {
   //collection of ID's - store ID's of each item
   final List<int> _itemId = [];
 
-//get catalog
-  CatlaogModel? get catalog => _catlaog;
+ 
 
   set catalog(CatlaogModel? newCatalog) {
     _catlaog = newCatalog;

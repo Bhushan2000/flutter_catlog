@@ -13,8 +13,7 @@ class AddToCart extends StatelessWidget {
     required this.catalog,
   }) : super(key: key);
 
-  final _cart = CartModel();
-
+ 
   @override
   Widget build(BuildContext context) {
     // VxState.listen(context, to: [AddMutation, ReomveMutation]);
