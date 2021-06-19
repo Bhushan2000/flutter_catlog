@@ -1,16 +1,26 @@
 import 'dart:convert';
 
 class CatlaogModel {
+  ////////////////////// singleton class it produce only one object
+  static final catModel = CatlaogModel._internal();
+
+  // constructor
+  CatlaogModel._internal();
+
+  factory CatlaogModel() => catModel;
+
+  ////////////////// singleton class ///////////
+
   static List<Item>? items;
 
   // get item by ID
-    Item getByID(int id) => items!.firstWhere(
+  Item getByID(int id) => items!.firstWhere(
         (element) => element.id == id,
         orElse: null,
       );
 
   /// get item by position
-    Item getByPosition(int pos) => items![pos];
+  Item getByPosition(int pos) => items![pos];
 }
 
 class Item {

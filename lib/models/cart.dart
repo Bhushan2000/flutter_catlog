@@ -1,16 +1,29 @@
 import 'package:flutter_catlog/models/catlog.dart';
 
 class CartModel {
-  late CatlaogModel _catlaog;
+  ////////////////////// singleton class it produce only one object
+  static final cartModel = CartModel._internal();
+
+  // constructor
+  CartModel._internal();
+
+  factory CartModel() => cartModel;
+
+  ////////////////// singleton class /////////////////
+  ///
+   
+   
+
+  CatlaogModel? _catlaog;
 
   //collection of ID's - store ID's of each item
   final List<int> _itemId = [];
 
 //get catalog
-  CatlaogModel get catalog => _catlaog;
+  CatlaogModel? get catalog => _catlaog;
 
-  set catalog(CatlaogModel newCatalog) {
-    assert(catalog != null);
+  set catalog(CatlaogModel? newCatalog) {
+     
     _catlaog = newCatalog;
   }
 
