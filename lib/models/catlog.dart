@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-class CatlaogModel {
-   
+import 'package:flutter_catlog/core/store.dart';
+import 'package:velocity_x/velocity_x.dart';
 
+class CatlaogModel {
   static List<Item>? items;
 
   // get item by ID
@@ -107,5 +108,22 @@ class Item {
         price.hashCode ^
         color.hashCode ^
         image.hashCode;
+  }
+}
+
+class SearchMutation extends VxMutation<MyStore> {
+  final String query;
+
+  SearchMutation(this.query);
+
+  @override
+  perform() {
+    if (query.length >= 1) {
+      store!.items = CatlaogModel.items!
+          .where((e1) => e1.name!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    } else {
+      store!.items = CatlaogModel.items;
+    }
   }
 }

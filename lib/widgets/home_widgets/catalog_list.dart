@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_catlog/core/store.dart';
 
 import 'package:flutter_catlog/models/catlog.dart';
 import 'package:flutter_catlog/pages/home_details_page.dart';
@@ -14,46 +15,52 @@ class CatalogList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return !context.isMobile
-        ? GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, crossAxisSpacing: 20),
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              final catalog = CatlaogModel.items![index];
+    final MyStore store = VxState.store;
 
-              return InkWell(
-                child: CatalogItem(catalog: catalog),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeDetailsPage(catalog: catalog),
-                    ),
+    return Scrollbar(
+      child: VxBuilder(
+        mutations: {SearchMutation},
+        builder: (context, s, _) => !context.isMobile
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, crossAxisSpacing: 20),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  final catalog = store.items![index];
+
+                  return InkWell(
+                    child: CatalogItem(catalog: catalog),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              HomeDetailsPage(catalog: catalog),
+                        ),
+                      );
+                    },
                   );
                 },
-              );
-            },
-            itemCount: CatlaogModel.items!.length,
-          )
-        : ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              final catalog = CatlaogModel.items![index];
+                itemCount: store.items!.length,
+              )
+            : ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  final catalog = store.items![index];
 
-              return InkWell(
-                child: CatalogItem(catalog: catalog),
-                onTap: () {
-                  context.vxNav.push(
+                  return InkWell(
+                    child: CatalogItem(catalog: catalog),
+                    onTap: () => context.vxNav.push(
                       Uri(
                           path: MyRoutes.homeDetailsRoute,
                           queryParameters: {"id": catalog.id.toString()}),
-                      params: catalog);
+                    ),
+                  );
                 },
-              );
-            },
-            itemCount: CatlaogModel.items!.length,
-          );
+                itemCount: store.items!.length,
+              ),
+      ),
+    );
   }
 }
 

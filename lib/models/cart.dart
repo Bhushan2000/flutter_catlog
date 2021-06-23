@@ -9,8 +9,6 @@ class CartModel {
   //collection of ID's - store ID's of each item
   final List<int> _itemId = [];
 
- 
-
   set catalog(CatlaogModel? newCatalog) {
     _catlaog = newCatalog;
   }
@@ -21,8 +19,6 @@ class CartModel {
   ///get total price
   num get totalPrice =>
       items.fold(0, (total, current) => total + current.price!.toInt());
-
-  
 }
 
 class AddMutation extends VxMutation<MyStore> {

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/core/store.dart';
 import 'package:flutter_catlog/models/cart.dart';
+ 
+ 
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
@@ -24,7 +26,7 @@ class CartPage extends StatelessWidget {
 
 class _CartTotal extends StatelessWidget {
   final CartModel? _cart = (VxState.store as MyStore).cart;
-
+  // final _paymentItems = <PaymentItem>[];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -35,6 +37,11 @@ class _CartTotal extends StatelessWidget {
           VxBuilder(
             mutations: {ReomveMutation},
             builder: (context, s, _) {
+              // _paymentItems.add(PaymentItem(
+              //   amount: _cart!.totalPrice.toString(),
+              //   label: "Course",
+              //   status: PaymentItemStatus.final_price,
+              // ));
               return "\$${_cart!.totalPrice}"
                   .text
                   .color(context.accentColor)
@@ -53,6 +60,41 @@ class _CartTotal extends StatelessWidget {
                           MaterialStateProperty.all(context.theme.buttonColor)),
                   child: "Buy".text.white.make())
               .w32(context)
+
+          // Row(
+          //   children: [
+          //     ApplePayButton(
+          //       paymentConfigurationAsset: 'applepay.json',
+          //       paymentItems: _paymentItems,
+          //       width: 200,
+          //       height: 50,
+          //       style: ApplePayButtonStyle.black,
+          //       type: ApplePayButtonType.buy,
+          //       margin: const EdgeInsets.only(top: 15.0),
+          //       onPaymentResult: (data) {
+          //         print(data);
+          //       },
+          //       loadingIndicator: const Center(
+          //         child: CircularProgressIndicator(),
+          //       ),
+          //     ),
+          //     GooglePayButton(
+          //       paymentConfigurationAsset: 'gpay.json',
+          //       paymentItems: _paymentItems,
+          //       width: 200,
+          //       height: 50,
+          //       style: GooglePayButtonStyle.black,
+          //       type: GooglePayButtonType.pay,
+          //       margin: const EdgeInsets.only(top: 15.0),
+          //       onPaymentResult: (data) {
+          //         print(data);
+          //       },
+          //       loadingIndicator: const Center(
+          //         child: CircularProgressIndicator(),
+          //       ),
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );
@@ -60,8 +102,6 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatelessWidget {
-   
-
   @override
   Widget build(BuildContext context) {
     final CartModel? _cart = (VxState.store as MyStore).cart;

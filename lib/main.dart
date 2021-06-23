@@ -4,6 +4,7 @@ import 'package:flutter_catlog/pages/cart_page.dart';
 import 'package:flutter_catlog/pages/home_details_page.dart';
 import 'package:flutter_catlog/pages/home_page.dart';
 import 'package:flutter_catlog/pages/login_page.dart';
+
 import 'package:flutter_catlog/utils/routes.dart';
 import 'package:flutter_catlog/widgets/themes.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -25,6 +26,29 @@ class MyApp extends StatelessWidget {
     // context basically a piece of info. that gives the position of widget inside widget tree.
 
     // navigator 2.0
+    var vxNavigator = VxNavigator(
+      routes: {
+        "/": (_, s) => MaterialPage(child: HomePage()),
+        MyRoutes.homeRoute: (_, s) => MaterialPage(child: HomePage()),
+        MyRoutes.homeDetailsRoute: (uri, _) {
+          final catalog = (VxState.store as MyStore)
+              .catalog!
+              .getByID(int.parse(uri.queryParameters["id"].toString()));
+
+          return MaterialPage(
+              child: HomeDetailsPage(
+            catalog:
+                catalog, // params means we pass catalog to the homedetails page from catalog list
+          ));
+        },
+
+        MyRoutes.loginRoute: (_, s) => MaterialPage(child: LoginPage()),
+        MyRoutes.cartRoute: (_, s) =>
+            MaterialPage(child: CartPage()), // s is noting to sense i.e., blank
+      },
+    );
+    (VxState.store as MyStore).navigator = vxNavigator;
+
     return MaterialApp.router(
       // home: HomePage(),
       themeMode: ThemeMode.system,
@@ -33,27 +57,7 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       routeInformationParser: VxInformationParser(),
-      routerDelegate: VxNavigator(
-        routes: {
-          "/": (_, s) => MaterialPage(child: LoginPage()),
-          MyRoutes.homeRoute: (_, s) => MaterialPage(child: HomePage()),
-          MyRoutes.homeDetailsRoute: (uri, _) {
-            final catalog = (VxState.store as MyStore)
-                .catalog!
-                .getByID(int.parse(uri.queryParameters["id"].toString()));
-
-            return MaterialPage(
-                child: HomeDetailsPage(
-              catalog:
-                  catalog, // params means we pass catalog to the homedetails page from catalog list
-            ));
-          },
-
-          MyRoutes.loginRoute: (_, s) => MaterialPage(child: LoginPage()),
-          MyRoutes.cartRoute: (_, s) => MaterialPage(
-              child: CartPage()), // s is noting to sense i.e., blank
-        },
-      ),
+      routerDelegate: vxNavigator,
 
       // initialRoute: MyRoutes.loginRoute, //by default it is "/" but you can
       // routes: {
